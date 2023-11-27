@@ -95,12 +95,8 @@ function removeElement() {
 
 $("#save").click(handleSave);
 
-let id;
-
 function handleSave() {
     existing.then(imported => {
-        id = imported.length;
-
         const current = Array.from(document.querySelectorAll("li")).map(
             $el => $el.innerText
         );
@@ -109,7 +105,6 @@ function handleSave() {
 
         newStuff.forEach(item => {
             db.collection("shoppingList").doc(item).set({ item: item });
-            id++;
             imported.push(item);
         });
 

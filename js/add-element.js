@@ -18,7 +18,7 @@ const firebaseConfig = {
     projectId: "cscia225",
     storageBucket: "cscia225.appspot.com",
     messagingSenderId: "122711494384",
-    appId: "1:122711494384:web:0a695ba2da3a5b669bbc35",
+    appId: "1:122711494384:web:0a695ba2da3a5b669bbc35"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -108,7 +108,7 @@ function handleSave() {
         const newStuff = current.filter(item => !imported.includes(item));
 
         newStuff.forEach(item => {
-            db.collection("shoppingList").doc(String(id)).set({ item: item });
+            db.collection("shoppingList").doc(item).set({ item: item });
             id++;
             imported.push(item);
         });
@@ -118,10 +118,7 @@ function handleSave() {
         );
 
         deleted.forEach(item =>
-            db
-                .collection("shoppingList")
-                .doc(String(imported.indexOf(item)))
-                .delete()
+            db.collection("shoppingList").doc(item).delete()
         );
     });
 }
